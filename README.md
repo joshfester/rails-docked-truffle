@@ -1,3 +1,5 @@
+This fork replaces the standard ruby image with truffleruby
+
 # Docked Rails CLI
 
 Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails CLI uses a Docker image to make it much easier, requiring only Docker to be installed.
