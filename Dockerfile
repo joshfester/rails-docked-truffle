@@ -1,4 +1,4 @@
-FROM ruby:3.2
+FROM ghcr.io/graalvm/truffleruby:debian-22.3.1
 
 # Ensure node.js 19 is available for apt-get
 RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
@@ -12,7 +12,7 @@ WORKDIR /rails
 # Ensure gems are installed on a persistent volume and available as bins
 VOLUME /bundle
 RUN bundle config set --global path '/bundle'
-ENV PATH="/bundle/ruby/3.2.0/bin:${PATH}"
+ENV PATH="/bundle/ruby/truffleruby-22.3.1/bin:${PATH}"
 
 # Install Rails
 RUN gem install rails
