@@ -4,7 +4,11 @@ FROM ghcr.io/graalvm/truffleruby:debian-22.3.1
 RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libvips nodejs && npm install -g yarn
+# Packages not included in https://github.com/rails/docked :
+#   git: for 'rails new'
+#   pkg-config: for sqlite gem
+#   libpq: for pg
+RUN apt-get update -qq && apt-get install -y libpq pkg-config git build-essential libvips nodejs && npm install -g yarn
 
 # Mount $PWD to this workdir
 WORKDIR /rails
@@ -12,7 +16,7 @@ WORKDIR /rails
 # Ensure gems are installed on a persistent volume and available as bins
 VOLUME /bundle
 RUN bundle config set --global path '/bundle'
-ENV PATH="/bundle/ruby/truffleruby-22.3.1/bin:${PATH}"
+ENV PATH="/bundle/truffleruby/3.0.3.22.3.1/bin:${PATH}"
 
 # Install Rails
 RUN gem install rails
