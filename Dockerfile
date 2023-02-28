@@ -8,7 +8,7 @@ RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
 #   git: for 'rails new'
 #   pkg-config: for sqlite gem
 #   libpq: for pg
-RUN apt-get update -qq && apt-get install -y libpq pkg-config git build-essential libvips nodejs && npm install -g yarn
+RUN apt-get update -qq && apt-get install -y libpq-dev pkg-config git build-essential libvips nodejs && npm install -g yarn
 
 # Mount $PWD to this workdir
 WORKDIR /rails
